@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create New Tour</title>
+<style>
+    /* CSS Styles */
+    #allToursContainer {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .tourBox {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px;
+        width: calc(33.33% - 20px); /* Adjust width based on your preference */
+        box-sizing: border-box;
+    }
+    
+    .tourBox h3 {
+        margin-top: 0;
+    }
+    
+    .editButton {
+        margin-top: 10px;
+        padding: 5px 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+<h2>Create New Tour</h2>
+<form id="createTourForm" enctype="multipart/form-data">
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title" required><br><br>
+    
+    <label for="city">City:</label><br>
+    <input type="text" id="city" name="city" required><br><br>
+    
+    <label for="address">Address:</label><br>
+    <input type="text" id="address" name="address"><br><br>
+    
+    <label for="distance">Distance:</label><br>
+    <input type="number" id="distance" name="distance" required><br><br>
+    
+    <label for="price">Price:</label><br>
+    <input type="number" id="price" name="price" required><br><br>
+    
+    <label for="maxGroupSize">Max Group Size:</label><br>
+    <input type="number" id="maxGroupSize" name="maxGroupSize" required><br><br>
+    
+    <label for="desc">Description:</label><br>
+    <textarea id="desc" name="desc" required></textarea><br><br>
+    
+    <label for="photo">Photo:</label><br>
+    <input type="file" id="photo" name="photo" accept="image/*" required><br><br>
+    
+    <button type="submit">Submit</button>
+</form>
+<!-- Button to fetch and display all tours -->
+<button id="showAllTours">Show All Tours</button>
+
+<div id="allToursContainer"></div>
+<script>
+document.getElementById("createTourForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    
+    try {
+        const response = await fetch('/api/v1/tours', {
+            method: 'POST',
+            body: formData
+        });
+        const data = await response.json();
+        if (data.success) {
+            alert("Tour created successfully!");
+            // Optionally, redirect to another page or do something else
+        } else {
+            alert("Failed to create tour.");
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert("An error occurred while creating the tour.");
+    }
+});
+document.getElementById("showAllTours").addEventListener("click", async () => {
+    try {
+        const response = await fetch('/api/v1/tours');
+        const data = await response.json();
+        if (data.success) {
+            displayAllTours(data.data);
+        } else {
+            alert("Failed to fetch tours.");
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert("An error occurred while fetching tours.");
+    }
+});
+
+function displayAllTours(tours) {
+    const container = document.getElementById("allToursContainer");
+    container.innerHTML = ''; // Clear previous content
+
+    tours.forEach(tour => {
+        const tourDiv = document.createElement('div');
+        tourDiv.classList.add('tourBox');
+        tourDiv.innerHTML = `
+            <h3>${tour.title}</h3>
+            <p><strong>City:</strong> ${tour.city}</p>
+            <p><strong>Distance:</strong> ${tour.distance}</p>
+            <!-- Add more details as needed -->
+            <button class="editButton" onclick="editTour('${tour._id}')">Edit</button>
+            <button class="deleteButton" onclick="deleteTour('${tour._id}')">Delete</button>
+        `;
+        container.appendChild(tourDiv);
+    });
+}
+function editTour(tourId) {
+    // Redirect to edit page with the tour ID
+    window.location.href = `/edit-tour.html?id=${tourId}`;
+}
+async function deleteTour(tourId) {
+    try{
+        const response=await fetch(`/api/v1/tours/${tourId}`,{
+            method:'DELETE'
+        })
+        const data=await response.json();
+        if(data.success){
+        alert("Tour deleted successfully")
+        await fetchAllTours()
+        }else{
+            alert("Failed to delete")
+        }
+    }catch(err){
+        console.error(err)
+        alert("An error occurred while deleting the tour.");
+    }
+}
+
+async function fetchAllTours() {
+    try {
+        const response = await fetch('/api/v1/tours');
+        const data = await response.json();
+        if (data.success) {
+            displayAllTours(data.data);
+        } else {
+            alert("Failed to fetch tours.");
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert("An error occurred while fetching tours.");
+    }
+}
+
+// Update event listener for showing all tours
+document.getElementById("showAllTours").addEventListener("click", fetchAllTours);
+</script>
+</body>
+</html>

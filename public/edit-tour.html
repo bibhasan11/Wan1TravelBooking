@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edit Tour</title>
+<style>
+    /* CSS Styles */
+    /* Add your custom styles here */
+</style>
+</head>
+<body>
+<h2>Edit Tour</h2>
+<form id="editTourForm"  enctype="multipart/form-data">
+    <input hidden id="tourId" name="tourId">
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title" required><br><br>
+    
+    <label for="city">City:</label><br>
+    <input type="text" id="city" name="city" required><br><br>
+    
+    <label for="address">Address:</label><br>
+    <input type="text" id="address" name="address"><br><br>
+    
+    <label for="distance">Distance:</label><br>
+    <input type="number" id="distance" name="distance" required><br><br>
+    
+    <label for="price">Price:</label><br>
+    <input type="number" id="price" name="price" required><br><br>
+    
+    <label for="maxGroupSize">Max Group Size:</label><br>
+    <input type="number" id="maxGroupSize" name="maxGroupSize" required><br><br>
+    
+    <label for="desc">Description:</label><br>
+    <textarea id="desc" name="desc" required></textarea><br><br>
+    
+    <label for="photo">Photo:</label><br>
+    <input type="file" id="photo" name="photo" accept="image/*"><br><br>
+    
+    <button onclick="handleSubmit()">Update</button>
+
+</form>
+
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+const tourId = urlParams.get('id');
+
+
+
+async function handleSubmit(){
+    alert("Clicked");
+    const urlParams = new URLSearchParams(window.location.search);
+    const tourId = urlParams.get('id');
+    alert( 'Helloo' + document.getElementById('tourId').value);
+
+    var title =document.getElementById('title').value
+
+    var city = document.getElementById('city').value
+     
+    var address = document.getElementById('address').value;
+    var distance = document.getElementById('distance').value;
+    
+    var price = document.getElementById('price').value;
+    var maxGroupSize = document.getElementById('maxGroupSize').value;
+    var desc = document.getElementById('desc').value;
+
+
+    
+        fetch(`/api/v1/tours/${tourId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+        body: JSON.stringify({
+          title:title,
+          city:city,
+          address:address,
+          distance:distance,
+          price:price,
+          desc:desc,
+          maxGroupSize:maxGroupSize
+        }),
+
+        })
+        .then(function(response){ 
+        return response.json()})
+        .then(function(data)
+        {console.log(data)
+      }).catch(error => console.error('Error:', error)); 
+}
+
+
+
+document.getElementById("editTourForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    
+    try {
+        const response = await fetch(`/api/v1/tours/${tourId}`, {
+            method: 'PUT',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+        const data = await response.json();
+        if (data.success) {
+            alert("Tour updated successfully!");
+            // Optionally, redirect to another page or do something else
+        } else {
+            alert("Failed to update tour.");
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert("An error occurred while updating the tour.");
+    }
+});
+</script>
+</body>
+</html>

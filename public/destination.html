@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Tours</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        main {
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .tours-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .tour-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 300px;
+            margin: 20px;
+        }
+
+        .tour-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .tour-card-content {
+            padding: 20px;
+        }
+
+        .tour-card-content h2 {
+            font-size: 1.5em;
+            margin: 0 0 10px 0;
+        }
+
+        .tour-card-content p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .tour-card-content .price {
+            font-weight: bold;
+            color: #333;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Available Tour Packages</h1>
+    </header>
+    <main>
+        <div id="tours-container" class="tours-container"></div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toursContainer = document.getElementById('tours-container');
+
+            fetch('/api/v1/tours')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        data.data.forEach(tour => {
+                            const tourCard = document.createElement('div');
+                            tourCard.classList.add('tour-card');
+
+                            tourCard.innerHTML = `
+                                <img src="${tour.photo}" alt="${tour.title}">
+                                <div class="tour-card-content">
+                                    <h2>${tour.title}</h2>
+                                    <p><strong>City:</strong> ${tour.city}</p>
+                                    <p><strong>Address:</strong> ${tour.address}</p>
+                                    <p><strong>Distance:</strong> ${tour.distance} km</p>
+                                    <p><strong>Max Group Size:</strong> ${tour.maxGroupSize}</p>
+                                    <p class="price"><strong>Price:</strong> $${tour.price}</p>
+                                    <p>${tour.desc}</p>
+                                </div>
+                            `;
+
+                            toursContainer.appendChild(tourCard);
+                        });
+                    } else {
+                        toursContainer.innerHTML = '<p>Failed to load tours.</p>';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching tours:', error);
+                    toursContainer.innerHTML = '<p>Error loading tours.</p>';
+                });
+        });
+    </script>
+</body>
+</html>

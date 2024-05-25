@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel Booking</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="nav__logo">Wanderly</div>
+      <ul class="nav__links">
+        <li class="link"><a href="#">Home</a></li>
+        <li class="link"><a href="aboutus.html">About</a></li>
+        <li class="link"><a href="#">Offers</a></li>
+        <li class="link"><a href="review.html">Reviews</a></li>
+        <li class="link"><a href="destination.html">Destinations</a></li>
+      </ul>
+      <button class="btn"><a href="login.html">Login</a></button>
+    </nav>
+    <!-- hero section -->
+
+    <section class="home" id="home">
+      <div class="content">
+        <h3>Discover  with Wanderly</h3>
+        <p>Where Every Journey Begins</p>
+      </div>
+      <div class="controls">
+        <span class="vid-btn active" data-src="assets/v1.mp4"></span>
+        <span class="vid-btn" data-src="assets/v2.mp4"></span>
+        <span class="vid-btn" data-src="assets/v3.mp4"></span>
+        <span class="vid-btn" data-src="assets/v4.mp4"></span>
+      </div>
+      <div class="video-con">
+        <video
+          src="assets/v1.mp4"
+          id="video-slider"
+          loop
+          autoplay
+          muted
+        ></video>
+      </div>
+    </section>
+
+   <!-- booking container -->
+
+<div class="section__container booking__container">
+  <div class="booking__header">
+    <h2 class="booking__title">Book a Tour</h2>
+    <div class="booking__gif">
+      <img src="assets/g1.gif" alt="gif" />
+    </div>
+  </div>
+  <form id="searchForm">
+    <div class="form__group">
+      <label for="city">City:</label>
+      <input type="text" id="city" name="city" />
+    </div>
+    <div class="form__group">
+      <label for="distance">Maximum Distance (km):</label>
+      <input type="number" id="distance" name="distance" />
+    </div>
+    <div class="form__group">
+      <label for="maxGroupSize">Maximum Group Size:</label>
+      <input type="number" id="maxGroupSize" name="maxGroupSize" />
+    </div>
+    <button type="submit" class="btn">Search Tours</button>
+  </form>
+  <div id="tourResults" class="tour-results"></div>
+</div>
+
+
+    <!-- popular destination -->
+
+    <div class="section__container destination__container">
+      <div class="section__header">
+        <div>
+          <h2 class="section__title">Explore top destinations</h2></div>
+          
+          <div>
+          <p class="section__subtitle">
+            Explore your suitable and dream places around the world. Here you
+            can find your right destination.
+          </p>
+        </div>
+       
+       
+      </div>
+      <div class="destination__grid">
+        <div class="destination__card">
+          <img src="assets/canada.jpg" alt="destination" />
+          <div class="destination__details">
+            <p class="destination__title">Banff</p>
+            <p class="destination__subtitle">Canada</p>
+          </div>
+        </div>
+        <div class="destination__card">
+          <img src="assets/machu.jpg" alt="destination" />
+          <div class="destination__details">
+            <p class="destination__title">Machu Picchu</p>
+            <p class="destination__subtitle">Peru</p>
+          </div>
+        </div>
+        <div class="destination__card">
+          <img src="assets/Switzerland.jpg" alt="destination" />
+          <div class="destination__details">
+            <p class="destination__title">Lauterbrunnen</p>
+            <p class="destination__subtitle">Switzerland</p>
+          </div>
+        </div>
+        <div class="destination__card">
+          <img src="assets/china.jpg" alt="destination" />
+          <div class="destination__details">
+            <p class="destination__title">Zhangjiajie</p>
+            <p class="destination__subtitle">China</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- logo slider -->
+    <div class="slider">
+        <h1>Partnered Companies</h1>
+        <div class="slide-track">
+            <div class="slide">
+                <img  src="./assets/l1.png"  alt="logo" />
+            </div>
+             <div class="slide">
+                <img  src="./assets/l2.jpg" alt="logo" />
+            </div>
+             <div class="slide">
+                <img  src="./assets/l3.png"  alt="logo" />
+            </div>
+             <div class="slide">
+                <img  src="./assets/l5.png"  alt="logo" />
+            </div>
+             <div class="slide">
+                <img  src="./assets/l4.png"  alt="logo" />
+            </div>
+             <div class="slide">
+                <img  src="./assets/l6.png"  alt="logo" />
+            </div>
+             <div class="slide">
+                <img  src="./assets/l1.png"  alt="logo" />
+            </div>
+             <div class="slide">
+                <img  src="./assets/l3.png"  alt="logo" />
+            </div>
+             <div class="slide">
+                <img  src="./assets/l2.jpg"  alt="logo" />
+            </div>
+
+
+            <div class="slide">
+                <img  src="./assets/l1.png" height="100" width="250" alt="logo" />
+            </div>
+             <div class="slide">
+                <img  src="./assets/l2.jpg" height="100" width="250" alt="logo" />
+            </div>
+             <div class="slide">
+                <img  src="./assets/l3.png" height="100" width="250" alt="logo" />
+            </div>
+             <div class="slide">
+                <img  src="./assets/l5.png" height="100" width="250" alt="logo" />
+            </div>
+             <div class="slide">
+                <img  src="./assets/l4.png" height="100" width="250" alt="logo" />
+            </div>
+             <div class="slide">
+                <img  src="./assets/l6.png" height="100" width="250" alt="logo" />
+            </div>
+             <div class="slide">
+                <img  src="./assets/l6.png" height="100" width="250" alt="logo" />
+            </div>
+             <div class="slide">
+                <img  src="./assets/l6.png" height="100" width="250" alt="logo" />
+            </div>
+             <div class="slide">
+                <img  src="./assets/l6.png" height="100" width="250" alt="logo" />
+            </div>
+             
+        </div>
+    </div>
+
+
+    <!-- best trip package -->
+
+ <section class="trip">
+      <div class="section__container trip__container">
+        <h2 class="section__title">Best trip package</h2>
+        <p class="section__subtitle">
+          Explore your suitable and dream places around the world. Here you can
+          find your right destination.
+        </p>
+        <div class="trip__grid">
+          <div class="trip__card">
+            <img src="./assets/germany.jpg" alt="trip" />
+            <div class="trip__details">
+              <p>Wasserwerk Frelberg, Germany</p>
+              <div class="rating"><i class="ri-star-fill"></i> 4.2</div>
+              <div class="booking__price">
+                <div class="price"><span>From</span> $300</div>
+                <button class="book__now">Book Now</button>
+              </div>
+            </div>
+          </div>
+          <div class="trip__card">
+            <img src="./assets/Chile.jpg" alt="trip" />
+            <div class="trip__details">
+              <p>Patagonia, Argentina and Chile</p>
+              <div class="rating"><i class="ri-star-fill"></i> 4.5</div>
+              <div class="booking__price">
+                <div class="price"><span>From</span> $450</div>
+                <button class="book__now">Book Now</button>
+              </div>
+            </div>
+          </div>
+          <div class="trip__card">
+            <img src="./assets/italy1.jpg" alt="trip" />
+            <div class="trip__details">
+              <p>The Dolomites, Italy</p>
+              <div class="rating"><i class="ri-star-fill"></i> 4.7</div>
+              <div class="booking__price">
+                <div class="price"><span>From</span> $400</div>
+                <button class="book__now">Book Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="view__all">
+          <button class="btn">View All</button>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- photo gallery -->
+
+    <div class="pic-gal">
+        <div class="gal-head">
+            <h4>PHOTO GALLERY</h4>
+            <h1>PHOTO'S FROM TRAVELLERS</h1>
+            <p>Fusce hic augue velit wisi quibusdam pariatur, iusto primis, nec nemo, rutrum. 
+                Vestibulum cumque laudantium. Sit ornare mollitia tenetur, aptent.</p>
+        </div>
+        <div class="gal">
+            <div class="gal-2pic">
+                <div class="img-holder">
+                <img src="./assets/t1.jpg" alt="" />
+                </div>
+                <div class="img-holder">
+                <img src="./assets/t3.jpg" alt="" />
+                </div>
+            </div>
+            <div class="gal-1pic">
+                <img src="./assets/t5.jpg" alt="" />
+            </div>
+             <div class="gal-2pic">
+                <div class="img-holder">
+                <img src="./assets/t4.jpg" alt="" />
+                </div>
+                <div class="img-holder1">
+                <img src="./assets/t2.jpg" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <section class="subscribe">
+      <div class="section__container subscribe__container">
+        <h2 class="section__header">Subscribe newsletter & get latest news</h2>
+        <form class="subscribe__form">
+          <input type="text" placeholder="Enter your email here" />
+          <button class="btn">Subscribe</button>
+        </form>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="section__container footer__container">
+        <div class="footer__col">
+          <h3>Wanderly</h3>
+          <p>
+            Join our Wanderly  and never miss out on the latest travel tips, exclusive offers, and insider secrets to making the most of your adventures! At Wanderly, we're passionate about helping you create unforgettable memories, one journey at a time.
+          </p>
+          <p>
+            Don't forget to follow us on social media for daily inspiration, exciting travel stories, and the latest updates on our offerings. At Wanderly, your journey is our priority, and we're committed to making every travel experience seamless and extraordinary.
+          </p>
+        </div>
+        <div class="footer__col">
+          <h4>INFORMATION</h4>
+          <p>Home</p>
+          <p>About</p>
+          <p>Offers</p>
+          <p>Seats</p>
+          <p>Destinations</p>
+        </div>
+        <div class="footer__col">
+          <h4>CONTACT</h4>
+          <p>Support</p>
+          <p>Media</p>
+          <p>Socials</p>
+        </div>
+      </div>
+      <div class="section__container footer__bar">
+        <p>Copyright © 2024 Bibhasan Podder. All rights reserved.</p>
+        <div class="socials">
+          <span><i class="ri-facebook-fill"></i></span>
+          <span><i class="ri-twitter-fill"></i></span>
+          <span><i class="ri-instagram-line"></i></span>
+          <span><i class="ri-youtube-fill"></i></span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>

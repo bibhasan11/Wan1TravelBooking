@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit booking</title>
+  </head>
+  <body>
+    <form id="editBookingForm" enctype="multipart/form-data">
+      <input type="hidden" id="bookId" name="bookId" />
+      <label for="tourName">TourName</label><br />
+      <input type="text" id="tourName" name="tourName" required /><br /><br />
+
+      <label for="fullName">FullName</label><br />
+      <input type="text" id="fullName" name="fullName" required /><br /><br />
+
+      <label for="guestSize">GuestSize</label><br />
+      <input
+        type="number"
+        id="guestSize"
+        name="guestSize"
+        required
+      /><br /><br />
+
+      <label for="phone">Phone</label><br />
+      <input type="number" id="phone" name="phone" required /><br /><br />
+
+      <label for="date">date</label><br />
+      <input type="date" id="date" name="date" required /><br /><br />
+
+      <button onclick="handleSubmit()">Update</button>
+    </form>
+    <script>
+        const urlParams=new URLSearchParams(window.location.search);
+        const bookId=urlParams.get('id')
+
+        async function handleSubmit(){
+            const urlParams=new URLSearchParams(window.location.search);
+            const tourId=urlParams.get('id')
+
+            var tourName =document.getElementById('tourName').value
+            var fullName =document.getElementById('fullName').value
+            var guestSize =document.getElementById('guestSize').value
+            var phone =document.getElementById('phone').value
+            var date =document.getElementById('date').value
+
+
+            fetch(`/api/v1/booking/${bookId}`,{
+                method:'PUT',
+                headers:{
+                    'Content-type':'application/json;charset=UTF-8'
+                },
+                body:JSON.stringify({
+                    tourName:tourName,
+                    fullName:fullName,
+                    guestSize:guestSize,
+                    phone:phone,
+                    date:date
+                
+                }),
+
+            })
+            .then(function(response){ 
+                return response.json()})
+                .then(function(data)
+                {console.log(data)
+              }).catch(error => console.error('Error:', error)); 
+        }
+        document.getElementById('editBookingForm').addEventListener("submit",async(e)=>{
+            e.preventDefault();
+            const form=e.target;
+            const formdata=new FormData(form);
+
+            try{
+                const response=fetch(`/api/v1/booking/${bookId}`,{
+                    method:'PUT',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                const data=await response.json();
+                if(data.success){
+                    alert("Booking UPdated Successfully");
+                }else{
+                    alert("Failed to update booking");
+                }
+            }catch(err){
+                console.error(err);
+                alert("An error while updating booking")
+            }
+        })
+    </script>
+  </body>
+</html>

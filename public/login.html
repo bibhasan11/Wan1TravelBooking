@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, 
+						initial-scale=1.0"
+    />
+    <title>login</title>
+    <link rel="stylesheet" href="css/login.css" />
+  </head>
+
+  <body>
+   
+
+    <!-- container div -->
+    <div class="container">
+      <!-- upper button section to select
+			the login or signup form -->
+      <div class="slider"></div>
+      <div class="btn">
+        <button class="login">Login</button>
+        <button class="signup">Signup</button>
+      </div>
+
+      <!-- Form section that contains the
+			login and the signup form -->
+      <div class="form-section">
+        <!-- login form -->
+        <!-- <div class="login-box"> -->
+          <form class="login-box" action="/api/v1/auth/login" method="post">
+          <input
+            type="email"
+            id="loginEmail"
+            class="email ele"
+            placeholder="youremail@email.com"
+            name="email"
+          />
+          <input
+            type="password"
+            id="loginPassword"
+            class="password ele"
+            placeholder="password"
+            name="password"
+          />
+          
+          <button id="loginBtn" class="clkbtn" type="submit" >Login</button>
+          </form>
+        <!-- </div> -->
+
+        <!-- signup form -->
+        <form class="signup-box" action="/api/v1/auth/register" method="post">
+          <input id="registerUsername" class="name ele" placeholder="Enter your username" name="username"/>
+          <input
+          id="registerEmail"
+            type="email"
+            class="email ele"
+            placeholder="youremail@email.com"
+            name="email"
+          />
+          <input id="registerPassword" class="password ele" placeholder="password" name="password"/>
+          
+          <button id="registerBtn" class="clkbtn" type="submit">Signup</button>
+        </form>
+      </div>
+    </div>
+    <script src="js/login.js">
+
+    </script>
+    
+  </body>
+</html>

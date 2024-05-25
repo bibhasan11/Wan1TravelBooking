@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Tour</title>
+    <link rel="stylesheet" href="css/booking.css">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Book a Tour</h1>
+        <form id="bookingForm">
+            <label for="tourName">Tour Name:</label>
+            <input type="text" id="tourName" name="tourName" required>
+            
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" required>
+            
+            <label for="guestSize">Guest Size:</label>
+            <input type="number" id="guestSize" name="guestSize" required>
+            
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="bookAt">Date:</label>
+            <input type="date" id="bookAt" name="bookAt" required>
+            
+            <input type="hidden" id="amount" name="amount" value="5000">
+
+            <button type="submit">Book Now</button>
+        </form>
+    </div>
+    <script src="js/booking.js"></script>
+</body>
+</html>
